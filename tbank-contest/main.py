@@ -1,17 +1,26 @@
-# TODO: реализуйте функцию encode
 def encode(string):
-    count = 1
+    if not string:
+        return ""
+
     result = []
-    for i in range(count, len(string)):
-        if i!=len(string)-1 and string[i] == string[i-1]:
+    count = 1
+
+    for i in range(1, len(string)):
+        if string[i] == string[i - 1]:
             count += 1
         else:
-            result += string[i-1]
-            if count > 1:
-                result += str(count)
+            if count == 1:
+                result.append(string[i - 1])
+            else:
+                result.append(string[i - 1] + str(count))
             count = 1
-    string = ''.join(result)
-    return string
+
+    if count == 1:
+        result.append(string[-1])
+    else:
+        result.append(string[-1] + str(count))
+
+    return "".join(result)
 
 string = input()
 
